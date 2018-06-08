@@ -5,7 +5,7 @@ var logger = require('morgan');
 var auth0 = require('auth0-js');
 var bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
+var bookingRouter = require('./routes/booking-api');
 var usersRouter = require('./routes/users');
 
 var dbb = require('./db');
@@ -176,7 +176,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', bookingRouter);
 app.use('/users', usersRouter);
 
 db.sequelize.sync().then(function () {
