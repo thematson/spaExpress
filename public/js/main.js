@@ -70,11 +70,11 @@ $('document').ready(function () {
   var yyyy = today.getFullYear();
    if(dd<10){
           dd='0'+dd
-      } 
+      }
       if(mm<10){
           mm='0'+mm
-      } 
-  
+      }
+
   today = yyyy+'-'+mm+'-'+dd;
   $("#book-date").attr("min", today);
 
@@ -182,12 +182,12 @@ $('document').ready(function () {
       {
 
         console.log(data);
-      
+
       }).catch(handleError);
 
       clearFields();
       $("#bookingModal").modal('toggle');
-      $('#confMessage').append('<p><strong>'+newBooking.service+'</strong> for <strong>'+newBooking.petName+'</strong> on <strong>' + newBooking.date +'</strong>.');
+      $('#confMessage').html('<p><strong>'+newBooking.service+'</strong> for <strong>'+newBooking.petName+'</strong> on <strong>' + newBooking.date +'</strong>.');
       $('#confirmationModal').modal('show');
 
       function handleError(err) {

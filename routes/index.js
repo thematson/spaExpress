@@ -9,6 +9,8 @@ const env = {
   AUTH0_CALLBACK_URL: 'http://localhost:3000/callback'
 };
 
+var db = require("../models");
+
 const bookings = require('../data/booking');
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -54,11 +56,28 @@ router.get('/api/booking', (req, res) => {
 });
 
 router.post('/api/booking', (req, res) =>{
-  let data = (req.body);
-  console.log('the server data is ' + JSON.stringify(data));
-
+  let booking = (req.body);
+  console.log('the server data is ' + JSON.stringify(booking));
+      db.Booking.create({
+          firstName: booking.firstName,
+          lastName: booking.lastName,
+          street: booking.street,
+          city: booking.city,
+          state: booking.state,
+          zip: booking.zip,
+          telephone: booking.telephone,
+          email: booking.email,
+          petName: booking.petName,
+          breed: booking.breed,
+          service: booking.service,
+          date: booking.date,
+          time: booking.time
+        })
+        .then(function (dbPost) {
+          res.json(dbPost);
+        });
   // friends.push(data);
-})
+});
 
 //General Query returns (Errors, Result, Fields)
 router.get('/querydb', (req, res) => {
